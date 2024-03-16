@@ -8,6 +8,10 @@ const port = 3000;
 app.use(cors());
 app.use(express.json());
 
+app.get("/", (req, res) => {
+  res.status(200).send("success");
+});
+
 app.post("/add-book", (req, res) => {
   // Nhận dữ liệu sách từ yêu cầu POST
   const { title, author, year, price, category, lang } = req.body;

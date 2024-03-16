@@ -3,11 +3,12 @@ const fs = require("fs");
 const cors = require("cors");
 const xml2js = require("xml2js");
 const http = require("http");
-
+const path = require("path");
 const app = express();
 const port = 3000;
 app.use(cors());
 app.use(express.json());
+const filePath = path.join(__dirname, "books.xml");
 
 app.get("/", (req, res) => {
   res.status(200).send("success");
@@ -18,7 +19,7 @@ app.post("/add-book", (req, res) => {
   const { title, author, year, price, category, lang } = req.body;
   console.log(title, author, year, price, category, lang);
   // Đọc tệp books.xml
-  fs.readFile("books.xml", "utf8", (err, data) => {
+  fs.readFile(path, "utf8", (err, data) => {
     if (err) {
       console.error("Error reading file:", err);
       res.status(500).send("Internal Server Error");
@@ -47,7 +48,7 @@ app.post("/add-book", (req, res) => {
       const xml = builder.buildObject(result);
 
       // Ghi dữ liệu mới vào tệp books.xml
-      fs.writeFile("books.xml", xml, "utf8", (err) => {
+      fs.writeFile(path, xml, "utf8", (err) => {
         if (err) {
           console.error("Error writing file:", err);
           res.status(500).send("Internal Server Error");
@@ -67,7 +68,7 @@ app.post("/delete-book", (req, res) => {
   console.log("Deleting book with title:", title);
 
   // Đọc tệp books.xml
-  fs.readFile("books.xml", "utf8", (err, data) => {
+  fs.readFile(path, "utf8", (err, data) => {
     if (err) {
       console.error("Error reading file:", err);
       res.status(500).send("Internal Server Error");
@@ -94,7 +95,7 @@ app.post("/delete-book", (req, res) => {
         const xml = builder.buildObject(result);
 
         // Ghi dữ liệu mới vào tệp books.xml
-        fs.writeFile("books.xml", xml, "utf8", (err) => {
+        fs.writeFile(path, xml, "utf8", (err) => {
           if (err) {
             console.error("Error writing file:", err);
             res.status(500).send("Internal Server Error");
@@ -117,7 +118,7 @@ app.post("/update-book", (req, res) => {
   const { title, author, year, price, category, lang = "en" } = req.body;
 
   // Đọc tệp books.xml
-  fs.readFile("books.xml", "utf8", (err, data) => {
+  fs.readFile(path, "utf8", (err, data) => {
     if (err) {
       console.error("Error reading file:", err);
       res.status(500).send("Internal Server Error");
@@ -150,7 +151,7 @@ app.post("/update-book", (req, res) => {
         const xml = builder.buildObject(result);
 
         // Ghi dữ liệu mới vào tệp books.xml
-        fs.writeFile("books.xml", xml, "utf8", (err) => {
+        fs.writeFile(path, xml, "utf8", (err) => {
           if (err) {
             console.error("Error writing file:", err);
             res.status(500).send("Internal Server Error");
@@ -169,7 +170,7 @@ app.post("/update-book", (req, res) => {
 
 app.get("/books", (req, res) => {
   // Đọc tệp books.xml
-  fs.readFile("books.xml", "utf8", (err, data) => {
+  fs.readFile(path, "utf8", (err, data) => {
     if (err) {
       console.error("Error reading file:", err);
       res.status(500).send("Internal Server Error");
@@ -191,58 +192,12 @@ app.get("/books", (req, res) => {
 });
 
 // filter
-// app.post("/filter-books", (req, res) => {
-//   // Nhận dữ liệu từ yêu cầu POST
-//   const { title, author, price, year } = req.body;
-
-//   // Tạo một đối tượng để chứa các điều kiện lọc
-//   const filterConditions = {};
-
-//   // Thêm các điều kiện không rỗng vào đối tượng lọc
-//   if (title) filterConditions.title = title;
-//   if (author) filterConditions.author = author;
-//   if (price) filterConditions.price = price;
-//   if (year) filterConditions.year = year;
-
-//   // Đọc tệp books.xml
-//   fs.readFile("books.xml", "utf8", (err, data) => {
-//     if (err) {
-//       console.error("Error reading file:", err);
-//       res.status(500).send("Internal Server Error");
-//       return;
-//     }
-
-//     // Chuyển đổi XML thành đối tượng JSON
-//     xml2js.parseString(data, (err, result) => {
-//       if (err) {
-//         console.error("Error parsing XML:", err);
-//         res.status(500).send("Internal Server Error");
-//         return;
-//       }
-
-//       // Lọc sách dựa trên các điều kiện
-//       const filteredBooks = result.bookstore.book.filter((book) => {
-//         let match = true;
-//         for (const [key, value] of Object.entries(filterConditions)) {
-//           if (!book[key] || book[key][0]._ !== value) {
-//             match = false;
-//             break;
-//           }
-//         }
-//         return match;
-//       });
-
-//       // Trả về kết quả cho máy khách
-//       res.status(200).json(filteredBooks);
-//     });
-//   });
-// });
 app.post("/filter-books", (req, res) => {
   // Nhận dữ liệu từ yêu cầu POST
   const { title, author, price, year } = req.body;
 
   // Đọc tệp books.xml
-  fs.readFile("books.xml", "utf8", (err, data) => {
+  fs.readFile(path, "utf8", (err, data) => {
     if (err) {
       console.error("Error reading file:", err);
       res.status(500).send("Internal Server Error");

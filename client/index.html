@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>BOOK LIBRARY</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <header class="header">
+      <div class="container">
+        <h1 class="logo">Book management</h1>
+        <nav class="nav">
+          <ul class="nav-list">
+            <li><a href="#">Home</a></li>
+            <li><a href="#">About</a></li>
+            <li><a href="#">Services</a></li>
+            <li><a href="#">Contact</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+    <h1>List books</h1>
+
+    <div class="book_list">
+      <!-- Book list will be displayed here -->
+    </div>
+
+    <div class="flex">
+      <div class="add">
+        <h2>Add New Book</h2>
+        <form id="addBookForm">
+          <div>
+            <label for="title">Title:</label>
+            <input type="text" id="title" name="title" />
+          </div>
+          <div>
+            <label for="author">Author:</label>
+            <input type="text" id="author" name="author" />
+          </div>
+          <div>
+            <label for="year">Year:</label>
+            <input type="number" id="year" name="year" />
+          </div>
+          <div>
+            <label for="price">Price:</label>
+            <input type="number" id="price" name="price" step="0.01" />
+          </div>
+          <div>
+            <label for="category">category:</label>
+            <input type="text" id="category" name="category" />
+          </div>
+          <div>
+            <label for="lang">lang:</label>
+            <input type="text" id="lang" name="lang" />
+          </div>
+          <button type="submit" class="submit-btn">Add Book</button>
+        </form>
+      </div>
+
+      <div class="update">
+        <h2>Update Book</h2>
+        <form id="updateBookForm">
+          <div>
+            <label for="title">Tên Title:</label>
+            <input type="text" id="updateTitle" name="title" />
+          </div>
+          <div>
+            <label for="author">Author:</label>
+            <input type="text" id="updateAuthor" name="author" />
+          </div>
+          <div>
+            <label for="year">Year:</label>
+            <input type="number" id="updateYear" name="year" />
+          </div>
+          <div>
+            <label for="price">Price:</label>
+            <input type="number" id="updatePrice" name="price" step="0.01" />
+          </div>
+          <div>
+            <label for="category">category:</label>
+            <input type="text" id="updateCategory" name="category" />
+          </div>
+          <div>
+            <label for="lang">lang:</label>
+            <input type="text" id="updateLang" name="lang" />
+          </div>
+          <button type="submit" class="submit-btn">Updat Book</button>
+        </form>
+      </div>
+    </div>
+
+    <h2>filter Book</h2>
+    <form id="filterBookForm">
+      <div class="input--width">
+        <label for="title">Tên Title:</label>
+        <input type="text" id="filterTitle" name="title" />
+      </div>
+      <div class="input--width">
+        <label for="author">Author:</label>
+        <input type="text" id="filterAuthor" name="author" />
+      </div>
+      <div class="input--width">
+        <label for="year">Year:</label>
+        <input type="number" id="filterYear" name="year" />
+      </div>
+      <div class="input--width">
+        <label for="price">Price:</label>
+        <input type="number" id="filterPrice" name="price" step="0.01" />
+      </div>
+      <button type="submit" class="submit-btn btn--width">Filter</button>
+    </form>
+
+    <div class="filter_book">
+      <!-- Book list will be displayed here -->
+    </div>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.6.8/axios.min.js"
+      integrity="sha512-PJa3oQSLWRB7wHZ7GQ/g+qyv6r4mbuhmiDb8BjSFZ8NZ2a42oTtAq5n0ucWAwcQDlikAtkub+tPVCw4np27WCg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+    <script src="./index.js"></script>
+  </body>
+</html>

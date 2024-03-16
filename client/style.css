@@ -1,0 +1,172 @@
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: sans-serif;
+}
+
+.header {
+  background-color: #2980b9;
+  color: #fff;
+  padding: 16px 0;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.logo {
+  margin: 0;
+  font-size: 28px;
+}
+
+.nav-list {
+  margin-left: 20px;
+  list-style-type: none;
+}
+
+.nav-list li {
+  display: inline-block;
+  margin-right: 20px;
+}
+
+.nav-list li:last-child {
+  margin-right: 0;
+}
+
+.nav-list li a {
+  color: #fff;
+  text-decoration: none;
+  font-size: 18px;
+  transition: color 0.3s;
+}
+
+.nav-list li a:hover {
+  color: #ecf0f1;
+}
+
+h1 {
+  display: flex;
+  justify-content: center;
+  font-size: 4rem;
+}
+
+.book_list,
+.filter_book {
+  margin: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  gap: 8px;
+}
+
+.item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex-basis: 25%;
+  max-width: calc(25% - 6px);
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  position: relative;
+}
+
+.title {
+  font-size: 1.4rem;
+  color: rebeccapurple;
+}
+.name,
+.price,
+.year {
+  font-size: 1.2rem;
+}
+.name {
+  margin: 0 10px;
+}
+.price {
+  color: #db2828;
+}
+.price strong {
+  color: #000;
+}
+
+.delete {
+  position: absolute;
+  right: 0;
+  top: 0;
+  padding: 8px;
+  font-size: 1.4rem;
+}
+.delete:hover {
+  color: #db2828;
+  cursor: pointer;
+}
+
+.add,
+.update {
+  flex: 1;
+  margin: 50px auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.form-group {
+  margin: 15px;
+}
+
+label {
+  display: block;
+  font-weight: bold;
+  margin-top: 10px;
+}
+
+input {
+  width: calc(100% - 20px);
+  padding: 8px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.submit-btn {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s;
+  margin-top: 20px;
+}
+
+.submit-btn:hover {
+  background-color: #45a049;
+}
+
+.flex {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 30px;
+  margin: 0 20px;
+}
+
+#filterBookForm {
+  display: flex;
+  gap: 10px;
+  margin: 20px;
+}
+
+.input--width {
+  flex: 1;
+}
+
+.btn--width {
+  width: 100px;
+}

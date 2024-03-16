@@ -19,7 +19,7 @@ app.post("/add-book", (req, res) => {
   const { title, author, year, price, category, lang } = req.body;
   console.log(title, author, year, price, category, lang);
   // Đọc tệp books.xml
-  fs.readFile(path, "utf8", (err, data) => {
+  fs.readFile(filePath, "utf8", (err, data) => {
     if (err) {
       console.error("Error reading file:", err);
       res.status(500).send("Internal Server Error");
@@ -48,7 +48,7 @@ app.post("/add-book", (req, res) => {
       const xml = builder.buildObject(result);
 
       // Ghi dữ liệu mới vào tệp books.xml
-      fs.writeFile(path, xml, "utf8", (err) => {
+      fs.writeFile(filePath, xml, "utf8", (err) => {
         if (err) {
           console.error("Error writing file:", err);
           res.status(500).send("Internal Server Error");
@@ -68,7 +68,7 @@ app.post("/delete-book", (req, res) => {
   console.log("Deleting book with title:", title);
 
   // Đọc tệp books.xml
-  fs.readFile(path, "utf8", (err, data) => {
+  fs.readFile(filePath, "utf8", (err, data) => {
     if (err) {
       console.error("Error reading file:", err);
       res.status(500).send("Internal Server Error");
@@ -95,7 +95,7 @@ app.post("/delete-book", (req, res) => {
         const xml = builder.buildObject(result);
 
         // Ghi dữ liệu mới vào tệp books.xml
-        fs.writeFile(path, xml, "utf8", (err) => {
+        fs.writeFile(filePath, xml, "utf8", (err) => {
           if (err) {
             console.error("Error writing file:", err);
             res.status(500).send("Internal Server Error");
@@ -118,7 +118,7 @@ app.post("/update-book", (req, res) => {
   const { title, author, year, price, category, lang = "en" } = req.body;
 
   // Đọc tệp books.xml
-  fs.readFile(path, "utf8", (err, data) => {
+  fs.readFile(filePath, "utf8", (err, data) => {
     if (err) {
       console.error("Error reading file:", err);
       res.status(500).send("Internal Server Error");
@@ -151,7 +151,7 @@ app.post("/update-book", (req, res) => {
         const xml = builder.buildObject(result);
 
         // Ghi dữ liệu mới vào tệp books.xml
-        fs.writeFile(path, xml, "utf8", (err) => {
+        fs.writeFile(filePath, xml, "utf8", (err) => {
           if (err) {
             console.error("Error writing file:", err);
             res.status(500).send("Internal Server Error");
@@ -170,7 +170,7 @@ app.post("/update-book", (req, res) => {
 
 app.get("/books", (req, res) => {
   // Đọc tệp books.xml
-  fs.readFile(path, "utf8", (err, data) => {
+  fs.readFile(filePath, "utf8", (err, data) => {
     if (err) {
       console.error("Error reading file:", err);
       res.status(500).send("Internal Server Error");
@@ -197,7 +197,7 @@ app.post("/filter-books", (req, res) => {
   const { title, author, price, year } = req.body;
 
   // Đọc tệp books.xml
-  fs.readFile(path, "utf8", (err, data) => {
+  fs.readFile(filePath, "utf8", (err, data) => {
     if (err) {
       console.error("Error reading file:", err);
       res.status(500).send("Internal Server Error");

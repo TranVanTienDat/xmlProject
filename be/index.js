@@ -278,6 +278,10 @@ app.post("/filter-books", (req, res) => {
   });
 });
 
-app.listen(port, () => {
-  console.log(`Server is listening at http://localhost:${port}`);
+const server = http.createServer(app);
+
+server.listen(port, () => {
+  console.log(`Server is running on port ${port}`);
 });
+
+module.exports = app;

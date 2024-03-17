@@ -4,14 +4,11 @@ const cors = require("cors");
 const xml2js = require("xml2js");
 const http = require("http");
 const path = require("path");
-const os = require("os");
 const app = express();
 const port = 3000;
 app.use(cors());
 app.use(express.json());
-const tempDir = fs.mkdtempSync(path.join(os.tmpdir(), "temp-"));
-const filePath = path.join(tempDir, "books.xml");
-fs.copyFileSync("books.xml", filePath);
+const filePath = path.join(__dirname, "books.xml");
 
 app.get("/", (req, res) => {
   res.status(200).send("success");
@@ -20,6 +17,7 @@ app.get("/", (req, res) => {
 app.post("/add-book", (req, res) => {
   // Nhận dữ liệu sách từ yêu cầu POST
   const { title, author, year, price, category, lang } = req.body;
+  console.log(title, author, year, price, category, lang);
   // Đọc tệp books.xml
   fs.readFile(filePath, "utf8", (err, data) => {
     if (err) {

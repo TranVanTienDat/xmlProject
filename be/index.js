@@ -14,45 +14,92 @@ app.get("/", (req, res) => {
   res.status(200).send("success");
 });
 
+// app.post("/add-book", (req, res) => {
+//   // Nhận dữ liệu sách từ yêu cầu POST
+//   const { title, author, year, price, category, lang } = req.body;
+//   // Đọc tệp books.xml
+//   fs.readFile(filePath, "utf8", (err, data) => {
+//     if (err) {
+//       console.error("Error reading file:", err);
+//       res.status(500).send("Internal Server Error");
+//       return;
+//     }
+
+//     // Chuyển đổi XML thành đối tượng JSON
+//     xml2js.parseString(data, (err, result) => {
+//       if (err) {
+//         console.error("Error parsing XML:", err);
+//         res.status(500).send("Internal Server Error");
+//         return;
+//       }
+
+//       // Thêm quyển sách mới vào đối tượng JSON
+//       result.bookstore.book.push({
+//         $: { category: category },
+//         title: [{ _: title, $: { lang: lang } }],
+//         author: [author],
+//         year: year,
+//         price: price,
+//       });
+
+//       // Chuyển đối tượng JSON thành XML
+//       const builder = new xml2js.Builder();
+//       const xml = builder.buildObject(result);
+
+//       // Ghi dữ liệu mới vào tệp books.xml
+//       fs.writeFile(filePath, xml, "utf8", (err) => {
+//         if (err) {
+//           console.error("Error writing file:", err);
+//           res.status(500).send("Internal Server Error");
+//           return;
+//         }
+//         console.log("Book added successfully.");
+//         res.status(200).send("Book added successfully.");
+//       });
+//     });
+//   });
+// });
 app.post("/add-book", (req, res) => {
   // Nhận dữ liệu sách từ yêu cầu POST
   const { title, author, year, price, category, lang } = req.body;
-  console.log(title, author, year, price, category, lang);
+
+  // Chuyển đối tượng sách thành XML
+  const newBook = {
+    book: {
+      $: { category: category },
+      title: [{ _: title, $: { lang: lang } }],
+      author: [author],
+      year: [year.toString()],
+      price: [price.toString()],
+    },
+  };
+
   // Đọc tệp books.xml
   fs.readFile(filePath, "utf8", (err, data) => {
     if (err) {
       console.error("Error reading file:", err);
-      res.status(500).send("Internal Server Error");
-      return;
+      return res.status(500).send("Internal Server Error");
     }
 
     // Chuyển đổi XML thành đối tượng JSON
     xml2js.parseString(data, (err, result) => {
       if (err) {
         console.error("Error parsing XML:", err);
-        res.status(500).send("Internal Server Error");
-        return;
+        return res.status(500).send("Internal Server Error");
       }
 
-      // Thêm quyển sách mới vào đối tượng JSON
-      result.bookstore.book.push({
-        $: { category: category },
-        title: [{ _: title, $: { lang: lang } }],
-        author: [author],
-        year: year,
-        price: price,
-      });
+      // Thêm sách mới vào đối tượng JSON
+      result.bookstore.book.push(newBook.book);
 
       // Chuyển đối tượng JSON thành XML
       const builder = new xml2js.Builder();
       const xml = builder.buildObject(result);
 
-      // Ghi dữ liệu mới vào tệp books.xml
+      // Ghi dữ liệu mới vào một vị trí ghi mới
       fs.writeFile(filePath, xml, "utf8", (err) => {
         if (err) {
           console.error("Error writing file:", err);
-          res.status(500).send("Internal Server Error");
-          return;
+          return res.status(500).send("Internal Server Error");
         }
         console.log("Book added successfully.");
         res.status(200).send("Book added successfully.");

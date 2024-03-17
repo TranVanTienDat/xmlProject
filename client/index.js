@@ -1,4 +1,4 @@
-const LOCAL_HOST = "http://localhost:3000/";
+const LOCAL_HOST = "https://xml-project-coral.vercel.app/";
 let isLoading = true;
 
 const $ = document.querySelector.bind(document);
@@ -25,7 +25,7 @@ if (isLoading) {
 const handleMap = (data) => {
   const htmls = data.map((item, i) => {
     return `<div class="item">
-        <span  class="delete" onclick="handleDelete(this)">x</span>
+    <span  class="delete" onclick="handleDelete(this)">x</span>
         <h3 class="title"> 
         ${item.title[0]._}
                 </h3>
@@ -47,8 +47,8 @@ window.onload = function () {
   });
 };
 
-const handleDelete = async (event) => {
-  const button = event.target;
+const handleDelete = async (el) => {
+  const button = el;
   const itemDiv = button.closest(".item");
   const title = itemDiv.querySelector(".title").innerText;
 

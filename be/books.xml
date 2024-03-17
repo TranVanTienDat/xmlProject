@@ -1,22 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <bookstore>
-  <book category="6u">
-    <title lang="en">fsskj</title>
+  <book category="t">
+    <title lang="en">rfrf</title>
     <author>tien dat</author>
-    <year>366</year>
-    <price>43</price>
-  </book>
-  <book category="53">
-    <title lang="en">rfrf</title>
-    <author>fdfrvf</author>
-    <year>43</year>
-    <price>433</price>
-  </book>
-  <book category="53">
-    <title lang="en">rfrf</title>
-    <author>fdfrvf</author>
-    <year>43</year>
-    <price>433</price>
+    <year>2000</year>
+    <price>1</price>
   </book>
   <book category="53">
     <title lang="en">rfrf</title>
